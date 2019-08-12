@@ -4,15 +4,22 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../models/ItemModel.dart';
+import 'repository.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source, Cache { //Implements Cache class in addition
+  // to Source class, requiring that the Cache's addItem method is defined
   Database db;
+
+  NewsDbProvider() {
+    init();
+  }
 
   // Class constructors can't have async methods, so we give them initialization
   // methods
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
+
     final path = join(documentsDirectory.path, "items.db");
 
     //Dart doesn't have an openOrCreate database, openDatabase handles
@@ -20,7 +27,7 @@ class NewsDbProvider {
 
     db = await openDatabase(path, version: 1,
         onCreate: (Database newDb, int version) {
-      newDb.execute("""CREATE TABLE Items
+          newDb.execute("""CREATE TABLE Items
       (
       id INTEGER PRIMARY KEY,
       type TEXT,
@@ -37,10 +44,14 @@ class NewsDbProvider {
       descendants INTEGER
       )
     """);
-    });
+        });
   }
 
-  Future<ItemModel>fetchItem(int id) async {
+  Future<List<int>> fetchTopIds() {
+    return null;
+  }
+
+  Future<ItemModel> fetchItem(int id) async {
     //Flutter has its own methods for querying conditions!
 
     //Maps in Dart are like javascript objects
@@ -58,7 +69,12 @@ class NewsDbProvider {
     return null;
   }
 
-  Future<int>addItem(ItemModel item) {
-    db.insert("Items", item.toMapForDb());
+  Future<int> addItem(ItemModel item) {
+    return db.insert("Items", item.toMapForDb());
   }
 }
+
+//This variable is created to make sure everyone using this class can use the
+// same instance
+
+final newsDbProvider = NewsDbProvider();

@@ -37,6 +37,7 @@ class ItemModel {
 
   // making the deleted and dead params into statements turns the ints stored
   // in the SQLite database back into booleans
+
         deleted = parsedJson['deleted'] == 1,
         type = parsedJson['type'],
         by = parsedJson['by'],
