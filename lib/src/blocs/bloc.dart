@@ -3,7 +3,10 @@ import 'validators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class Bloc extends Object with Validators {
-  //Class that handles changes in data via sinks(where data comes in)
+
+
+  //Streams are classes that handle changes in data via sinks(the class that
+  // feeds data into streams). BehaviorSubject is a type of stream
 
   final _emailController = BehaviorSubject<String>();
   final _passwordController = BehaviorSubject<String>();

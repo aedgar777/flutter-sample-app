@@ -1,6 +1,8 @@
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
 import '../models/ItemModel.dart';
+import 'dart:async';
+import 'dart:core';
 
 
 final _root = 'https://hacker-news.firebaseio.com/v0';
@@ -8,27 +10,28 @@ final _root = 'https://hacker-news.firebaseio.com/v0';
 class NewsApiProvider {
   Client client = Client();
 
-  fetchTopIds() async {
 
-    //Gets all type stories from URL
+  //Asynchronous functions have to be wrapped with the Future class
+
+  Future<List<int>> fetchTopIds() async {
+
+    //Gets all top stories from URL
+
     final response = await client.get(
         '$_root/topstories.json');
 
 
     //Converts response into json
     final ids = json.decode(response.body);
-    return ids;
+
+    return ids.cast<int>;
   }
 
-  fetchItem(int id) async {
-    
+  Future<ItemModel> fetchItem(int id) async {
     final response = await client.get('$_root/item/$id.json');
 
     final parsedJson = json.decode(response.body);
 
     return ItemModel.fromJson(parsedJson);
-
-
-
   }
 }
