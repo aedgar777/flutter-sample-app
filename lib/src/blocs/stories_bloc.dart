@@ -37,9 +37,17 @@ class StoriesBloc {
   // e.g. validating the contents of a text field, or calling a method with a
   // value from the sink like we're doing below with the ID number
 
+
+  // This transformer takes an id, fetches the associated item, and caches it.
+  // The list items then check against that cache so that they don't look for an
+  // item they already retrieved
+
   _itemsTransformer() {
     return ScanStreamTransformer(
             (Map<int, Future<ItemModel>>cache, int id,_ ) {
+
+              cache[id]= _repository.fetchItem(id);
+              return cache;
 
         },
         <int, Future<ItemModel>>{
