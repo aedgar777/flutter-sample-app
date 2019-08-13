@@ -8,8 +8,7 @@ import 'repository.dart';
 
 final _root = 'https://hacker-news.firebaseio.com/v0';
 
-class NewsApiProvider implements Source { //Implements Source class, requiring
-  // that Source's fetchTopIds and fetchItem methods be defined
+class NewsApiProvider implements Source { //Implements Source class, requiring that Source's fetchTopIds and fetchItem methods be defined
 
 
   Client client = Client();
