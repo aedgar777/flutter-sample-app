@@ -9,17 +9,13 @@ class StoriesProvider extends InheritedWidget {
 
 
   // named arguments wrapped in curly braces makes them optional
-  StoriesProvider({Key key, Widget child})
-
-  //This constructor provides an instance of the stories bloc to be accessed
-  // from the app
+  StoriesProvider({Key key, Widget child})//This constructor provides an instance of the stories bloc to be accessed from the app
       : bloc = StoriesBloc(),
+        super(key: key, child: child);  //Passes arguments to superclass
 
-  //Passes arguments to superclass
-        super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) {
+  bool updateShouldNotify(_) {
 
     return true;
   }

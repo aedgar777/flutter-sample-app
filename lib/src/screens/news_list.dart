@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../blocs/stories_provider.dart';
 import '../blocs/stories_bloc.dart';
+import '../widgets/news_list_tile.dart';
 
 class NewsList extends StatelessWidget {
   Widget build(context) {
@@ -8,8 +9,6 @@ class NewsList extends StatelessWidget {
     StoriesProvider.of(context); // gets instance of StoriesProvider,
     // which gets us our context and an instance of stories bloc, which calls
     // the fetch methods of our repository class and feeds the result in to a sink
-
-    bloc.fetchTopIds()
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +41,8 @@ class NewsList extends StatelessWidget {
         return ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (context, int index) {
-              return Text('${snapshot.data[index]}');
+              return NewsListTile(
+                  itemId: snapshot.data[index]);
             });
       },
     );

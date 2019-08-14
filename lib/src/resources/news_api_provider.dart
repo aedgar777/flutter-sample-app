@@ -1,6 +1,6 @@
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
-import '../models/ItemModel.dart';
+import '../models/item_model.dart';
 import 'dart:async';
 import 'dart:core';
 import 'repository.dart';
