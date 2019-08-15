@@ -6,7 +6,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoriesProvider(
-      child: MaterialApp(title: 'News', home: NewsList()),
+      child: MaterialApp(title: 'News',
+          home: NewsList()),
+
     );
   }
 }
