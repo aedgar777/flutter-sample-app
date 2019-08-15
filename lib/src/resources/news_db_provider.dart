@@ -72,9 +72,13 @@ class NewsDbProvider implements Source, Cache { //Implements Cache class in addi
   Future<int> addItem(ItemModel item) {
     return db.insert("Items", item.toMapForDb());
   }
+
+  Future<int>clear(){
+    return db.delete('Items');
+  }
 }
 
-//This variable is created to make sure everyone using this class can use the
-// same instance
+    // This variable is created to make sure everyone using this class can use the
+    // same instance
 
 final newsDbProvider = NewsDbProvider();

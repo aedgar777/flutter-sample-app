@@ -13,12 +13,8 @@ class StoriesProvider extends InheritedWidget {
       : bloc = StoriesBloc(),
         super(key: key, child: child);  //Passes arguments to superclass
 
-
   @override
-  bool updateShouldNotify(_) {
-
-    return true;
-  }
+  bool updateShouldNotify(_) => true;
 
   //Goes up the hierarchy until it finds a widget of the specified type and then casts that type to "InheritedType"
 

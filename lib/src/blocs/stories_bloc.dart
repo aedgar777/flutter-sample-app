@@ -38,6 +38,10 @@ class StoriesBloc {
     _topIds.sink.add(ids);
   }
 
+  clearCache(){
+   return _repository.clearCache();
+  }
+
 
   // Transformers act upon the data in the stream each time new data is added,
   // e.g. validating the contents of a text field, or calling a method with a
