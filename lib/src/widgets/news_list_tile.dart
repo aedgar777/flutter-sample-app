@@ -31,13 +31,13 @@ class NewsListTile extends StatelessWidget {
 
               // Returns title of item with that ID
 
-              return buildTile(itemSnapshot.data);
+              return buildTile(context, itemSnapshot.data);
             },
           );
         });
   }
 
-  Widget buildTile(ItemModel item) {
+  Widget buildTile(BuildContext context, ItemModel item) {
     return Column(
       children: [
         ListTile(
@@ -49,6 +49,10 @@ class NewsListTile extends StatelessWidget {
               Text('${item.descendants}')
             ],
           ),
+          onTap: () {
+            //Calls the navigator and navigates with data passed here, like an intent
+            Navigator.pushNamed(context, '/${item.id}');
+          },
         ),
         Divider(
           height: 8.0,
